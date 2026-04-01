@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SolarQuant Anomaly Detection
+Bundle-Description: Forward datum to a SolarQuant service.
+Bundle-SymbolicName: net.solarnetwork.node.datum.solarquant
+Bundle-Version: 1.0.0
+Bundle-Vendor: SolarNetwork
+Automatic-Module-Name: net.solarnetwork.node.datum.solarquant
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Import-Package: 
+ com.fasterxml.jackson.core;version="[2.20,3.0)",
+ com.fasterxml.jackson.databind;version="[2.20,3.0)",
+ com.fasterxml.jackson.databind.node;version="[2.20,3.0)",
+ net.solarnetwork.domain.datum;version="[3.0,4.0)",
+ net.solarnetwork.node.domain.datum;version="[1.0,2.0)",
+ net.solarnetwork.node.service;version="[1.0,2.0)",
+ net.solarnetwork.service;version="[1.0,2.0)",
+ net.solarnetwork.service.support;version="[1.0,2.0)",
+ net.solarnetwork.settings;version="[2.3,3.0)",
+ net.solarnetwork.settings.support;version="[3.0,4.0)",
+ org.slf4j;version="[1.7,2.0)",
+ org.springframework.context;version="[6.2,7.0)",
+ org.springframework.context.support;version="[6.2,7.0)"
