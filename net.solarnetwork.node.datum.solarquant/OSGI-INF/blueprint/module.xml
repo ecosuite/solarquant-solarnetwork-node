@@ -18,6 +18,22 @@
 	<reference id="identityService" availability="optional"
 		interface="net.solarnetwork.node.service.IdentityService"/>
 
+	<reference id="taskScheduler"
+		interface="org.springframework.scheduling.TaskScheduler"
+		filter="(function=node)"/>
+
+	<reference id="objectMapperService"
+		interface="net.solarnetwork.service.ObjectMapperService"
+		filter="(function=node)"/>
+
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"
+		factory-ref="objectMapperService" factory-method="getObjectMapper"/>
+
+	<bean id="httpRequestFactory" class="net.solarnetwork.common.osgi.service.DynamicServiceTracker">
+		<argument ref="bundleContext"/>
+		<property name="serviceClassName" value="org.springframework.http.client.ClientHttpRequestFactory"/>
+	</bean>
+
 	<!-- Services -->
 
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -42,6 +58,7 @@
 		<osgix:interfaces>
 			<beans:value>net.solarnetwork.settings.SettingSpecifierProvider</beans:value>
 			<beans:value>net.solarnetwork.service.PingTest</beans:value>
+			<beans:value>net.solarnetwork.node.service.DatumSourceIdProvider</beans:value>
 		</osgix:interfaces>
 		<osgix:service-properties>
 			<beans:entry key="settingPid" value="net.solarnetwork.node.datum.solarquant"/>
@@ -50,7 +67,18 @@
 				init-method="serviceDidStartup" destroy-method="serviceDidShutdown">
 			<argument ref="datumQueue"/>
 			<argument ref="identityService"/>
+			<argument ref="taskScheduler"/>
+			<argument ref="objectMapper"/>
+			<argument ref="httpRequestFactory"/>
 			<property name="messageSource" ref="messageSource"/>
+			<property name="httpRequestCustomizer">
+				<bean class="net.solarnetwork.common.osgi.service.DynamicServiceTracker">
+					<argument ref="bundleContext"/>
+					<property name="serviceClassName" value="net.solarnetwork.web.jakarta.service.HttpRequestCustomizerService"/>
+					<property name="sticky" value="true"/>
+					<property name="requirePropertyFilter" value="true"/>
+				</bean>
+			</property>
 		</bean>
 	</osgix:managed-service-factory>
 

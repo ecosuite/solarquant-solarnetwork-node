@@ -1,0 +1,29 @@
+${ivy.pom.license}
+${ivy.pom.header}
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>${ivy.pom.groupId}</groupId>
+  <artifactId>${ivy.pom.artifactId}</artifactId>
+  <packaging>${ivy.pom.packaging}</packaging>
+  <version>${ivy.pom.version}</version>
+  <name>${ivy.pom.name}</name>
+  <description>${ivy.pom.description}</description>
+  <url>https://github.com/ecosuite/solarquant-solarnetwork-node/tree/main/${ivy.pom.url.path}</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/ecosuite/solarquant-solarnetwork-node.git</connection>
+    <developerConnection>scm:git:git@github.com:ecosuite/solarquant-solarnetwork-node.git</developerConnection>
+    <url>https://github.com/ecosuite/solarquant-solarnetwork-node</url>
+  </scm>
+
+</project>
+
